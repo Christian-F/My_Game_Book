@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="65b26f10-76aa-4e11-a2fa-781d240d44c3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/christianfisher/database/Database.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/christianfisher/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/christianfisher/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/christianfisher/helpers/AppSetupHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/christianfisher/helpers/AppSetupHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/christianfisher/log/LoggingManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/christianfisher/log/LoggingManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +48,7 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.Color Scheme Font&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.com.christianfisher.helpers.AppSetupHelper">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.christianfisher.Main" />
       <module name="My_Game_Book" />
@@ -110,8 +112,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.com.christianfisher.helpers.AppSetupHelper" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.com.christianfisher.helpers.AppSetupHelper" />
       </list>
     </recent_temporary>
   </component>

@@ -1,5 +1,6 @@
 package com.christianfisher;
 
+import com.christianfisher.helpers.AppSetupHelper;
 import com.christianfisher.helpers.FileSystemHelper;
 import com.christianfisher.log.LoggingManager;
 
@@ -18,8 +19,11 @@ public class Main {
     }
 
     public void init(){
-        // spin up the fileSystemHelper
-        FileSystemHelper fileSystemHelper = new FileSystemHelper();
-        fileSystemHelper.startUp();
+        //TODO: - Fix logging system startup
+        //The logging startup system needs work, will come back to it.
+        //AppSetupHelper appSetupHelper = new AppSetupHelper();
+
+        // Start up necessary services
+
     }
 }

@@ -1,6 +1,7 @@
 package com.christianfisher.helpers;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -21,30 +22,36 @@ public class AppSetupHelper {
 
     final String PROPERTIES_FILE_NAME = "app.properties";
     final String DB_PATH_PROP_NAME = "databasePath";
-    final String LOGGING_PATH_NAME = "logPath";
+    final String LOGGING_PATH_NAME = "Logs";
     final String APP_DIR_NAME = "MyGameBook";
     final String LOG_FILENAME = "MyGameBook.log";
     final String DATA_DIR_NAME = "data";
-    final String SETTING_DIR_NAME = "settings";
+    final String SETTING_DIR_NAME = "Settings";
     String userDocumentsPath;
+    String loggingFile;
 
-
-    AppSetupHelper() {
+    public AppSetupHelper() {
         userDocumentsPath = getUserDocumentsDir();
-        createPropertyFile();
+        createAppDirectory();
+        createPropertiesFile();
+        createLoggingFile();
     }
 
-    private void createPropertyFile() {
+    public String getLoggingFile() {
+        return this.loggingFile;
+    }
+
+    private void createPropertiesFile() {
         Properties properties = new Properties();
         properties.setProperty("databasePath", buildDataPath());
-        properties.setProperty("logPath", buildLogPath());
+        properties.setProperty("logPath", createLoggingFile());
 
-        File propsFile = new File(Paths.get(userDocumentsPath, APP_DIR_NAME, SETTING_DIR_NAME, PROPERTIES_FILE_NAME).toFile().getAbsolutePath());
-
-        File directory = new File(Paths.get(userDocumentsPath, SETTING_DIR_NAME).toString());
+        File directory = new File(Paths.get(userDocumentsPath, APP_DIR_NAME, SETTING_DIR_NAME).toString());
         if (!directory.exists()) {
             directory.mkdirs(); // create directories if they do not exist
         }
+
+        File propsFile = new File(Paths.get(userDocumentsPath, APP_DIR_NAME, SETTING_DIR_NAME, PROPERTIES_FILE_NAME).toFile().getAbsolutePath());
 
         try {
             if (propsFile.createNewFile()) {
@@ -57,13 +64,35 @@ public class AppSetupHelper {
             e.printStackTrace();
         }
 
-
         try (FileOutputStream fos = new FileOutputStream(propsFile)) {
             properties.store(fos, "Built properties file.");
         } catch (Exception e) {
+            System.out.println("Failed to write properties to properties file.");
+        }
+    }
 
+    private String createLoggingFile() {
+        String logFileName;
+        buildLogPath();
+        File directory = new File(Paths.get(userDocumentsPath, APP_DIR_NAME, LOGGING_PATH_NAME).toString());
+        if (!directory.exists()) {
+            directory.mkdirs(); // create directories if they do not exist
         }
 
+        try {
+            File logFile = new File(Paths.get(String.valueOf(directory), LOG_FILENAME).toString());
+            if (!logFile.exists()) {
+                logFile.createNewFile();
+                this.loggingFile = logFile.getAbsolutePath();
+            }
+            logFileName = logFile.getAbsolutePath();
+            logger.info("Successfully Created logFile");
+        } catch (IOException e){
+            System.out.println("Could not create Log File:");
+            e.printStackTrace();
+            return "";
+        }
+        return logFileName;
     }
 
     private String getUserDocumentsDir() {
@@ -77,18 +106,26 @@ public class AppSetupHelper {
         return path;
     }
 
+    private void createAppDirectory() {
+        File appDir = new File(Paths.get(userDocumentsPath, APP_DIR_NAME).toString());
+        if (!appDir.exists()) {
+            appDir.mkdirs();
+        }
+    }
+
     private String buildDataPath() {
         return "";
     }
 
-    private String buildLogPath() {
-        return "";
+    private void buildLogPath() {
+        File directory = new File(Paths.get(userDocumentsPath, APP_DIR_NAME, LOGGING_PATH_NAME).toString());
+        if (!directory.exists()) {
+            directory.mkdirs(); // create directories if they do not exist
+        }
     }
-
 
     public static void main(String[] args) {
         AppSetupHelper test = new AppSetupHelper();
-
     }
 
 }

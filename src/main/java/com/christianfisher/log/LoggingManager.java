@@ -1,5 +1,6 @@
 package com.christianfisher.log;
 
+import com.christianfisher.helpers.AppSetupHelper;
 import com.christianfisher.helpers.FileSystemHelper;
 
 import java.io.FileInputStream;
@@ -12,7 +13,8 @@ public class LoggingManager { ;
     String logPath;
 
     public LoggingManager() {
-        logPath = fileSystemHelper.getLogPath();
+        AppSetupHelper appHelper = new AppSetupHelper();
+        logPath = appHelper.getLoggingFile();
         try {
             LogManager.getLogManager().readConfiguration(new FileInputStream("src/gameBookLogging.properties"));
         } catch (SecurityException | IOException e1){
